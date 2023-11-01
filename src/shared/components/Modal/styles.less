@@ -1,0 +1,61 @@
+.container-modal {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 50%);
+    position: fixed;
+    left: 0px;
+    top: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>.container-content {
+        overflow: auto;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 80px;
+        border-radius: 5px;
+
+        &.create,
+        &.view,
+        &.edit {
+            width: 80%;
+            height: 80%;
+
+            &>.submit-button {
+                display: flex;
+                gap: 20px;
+                width: 100%;
+                margin-top: 50px;
+
+                &>button{
+                    width: 108px;
+                }
+            }
+        }
+
+        &.remove {
+            padding: 50px 80px;
+            gap: 30px;
+
+            &>.certainty {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+
+                &>button {
+                    width: 108px;
+                }
+
+                &>p {
+                    font-size: 27px;
+                }
+            }
+        }
+    }
+}

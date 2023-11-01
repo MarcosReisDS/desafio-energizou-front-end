@@ -1,0 +1,67 @@
+.filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &>div {
+        display: flex;
+        gap: 15px;
+
+        &:first-child {
+            flex: 60% 0 0;
+            width: 60%;
+        }
+
+        &>button {
+            width: 100px;
+        }
+    }
+}
+
+.container-cards {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+
+    &>.card {
+        width: 100%;
+        background-color: #D9D9D9;
+        border-radius: 5px;
+        padding: 25px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        &>.razao {
+            height: 60px;
+            font-size: 24px;
+        }
+
+        &>.content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        &>.buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+
+            &>div {
+                display: flex;
+                gap: 10px;
+
+                &>button {
+                    width: 108px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.default-button {
+    width: fit-content;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: .3s;
+    padding: 8px 16px;
+
+    &:hover{
+        opacity: .8;
+    }
+
+    &.default {
+        background-color: #003063;
+        color: #fff;
+    }
+    
+    &.outlined {
+        border: 1px solid #003063;
+        background-color: transparent;
+        color: #003063;
+    }
+    &.delete {
+        background-color: red;
+        color: #fff;
+    }
+}

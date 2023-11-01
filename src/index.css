@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../src/shared/assets/img/fundo.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-y: -143px;
+  background-position-x: 0px;
+  background-attachment: fixed;
+  object-fit: contain;
+
+  font-family: sans-serif;
+}
