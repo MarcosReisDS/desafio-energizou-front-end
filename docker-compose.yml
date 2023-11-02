@@ -1,0 +1,28 @@
+services:
+  front:
+    container_name: energizou-desafio-front
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+    ports:
+      - "3000:5173"
+
+  api:
+    container_name: energizou-desafio-api
+    extends:
+     file: ${DIR_API:-../desafio-energizou-back-end}/docker-compose.yml
+     service: api
+
+  db:
+    container_name: energizou-desafio-db
+    extends:
+     file: ${DIR_API:-../desafio-energizou-back-end}/docker-compose.yml
+     service: db
+
+volumes:
+  my-db:
+    

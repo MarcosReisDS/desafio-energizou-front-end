@@ -18,6 +18,10 @@ class EnergizouApi {
         return this.energizou_api.get("/companies", { client_name })
     }
 
+    async login(username: string, password: string) {
+        return this.energizou_api.get("/companies/login", { username, password })
+    }
+
     async createCompany(company: CompanyType) {
         const regex = /[^a-zA-Z0-9\s]/g;
         company['cnpj'] = company.cnpj.replace(regex, '')

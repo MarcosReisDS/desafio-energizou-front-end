@@ -14,11 +14,9 @@ const Login: FC<ILogin> = () => {
         let data: any = captureElementData(["name", "password"]);
 
         if (data) {
-            energizouApi.getCompanyByClientName(data?.name?.value).then((resp: CompanyType) => {
-                if (data.password.value === resp.password) {
+            energizouApi.login(data?.name?.value, data?.password?.value).then((resp: CompanyType) => {
                     setCookie('profile', JSON.stringify({ cnpj: resp.cnpj, name: resp.client_name }), 1)
                     navigate("/perfil")
-                }
             })
         }
     }
