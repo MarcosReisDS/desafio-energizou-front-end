@@ -6,7 +6,7 @@ import DefaultInput from "../Input";
 import "./styles.less"
 import cepApi from "../../services/cep/server";
 
-interface IFormulario {
+interface IForm {
     handleSendData: (data: any) => void
     handleCancel?: () => void
     disableCancelButton?: boolean
@@ -14,7 +14,7 @@ interface IFormulario {
     data?: CompanyType
 }
 
-const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCancel, disableCancelButton }) => {
+const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disableCancelButton }) => {
 
     const [loading, setLoading] = useState<boolean>(false)
 
@@ -131,4 +131,4 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
     )
 }
 
-export default Formulario
+export default Form
