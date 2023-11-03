@@ -7,6 +7,15 @@ import "./styles.less"
 interface IProfile { }
 const Profile: FC<IProfile> = () => {
     const [myProfile, setMyProfile] = useState<CompanyType>()
+    const [companies, setCompanies] = useState<CompanyType[]>([])
+
+    const handleUpdate = (dataCompany: CompanyType) => {
+        energizouApi.updateCompany(dataCompany).then(() => {
+            setCompanies(companies?.map((company) => company?.id === dataCompany?.id ? dataCompany : company))
+        }).catch(() => {
+            alert("Não foi possível editar a empresa")
+        })
+    }
 
     useEffect(() => {
         const id_company = getCookie('profile')?.id
@@ -17,7 +26,7 @@ const Profile: FC<IProfile> = () => {
 
     return (
         <div className="container-profile">
-            <Form typeForm="edit" data={myProfile} handleSendData={(e) => console.log(e)} disableCancelButton />
+            <Form typeForm="edit" data={myProfile} handleSendData={(e) => handleUpdate(e)} disableCancelButton />
         </div>
     )
 }

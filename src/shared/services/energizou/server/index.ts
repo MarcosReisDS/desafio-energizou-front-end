@@ -42,7 +42,7 @@ class EnergizouApi {
         company['cnpj'] = company.cnpj.replace(regex, '')
         company['phone'] = company.phone.replace(regex, '').replace(" ", "")
         // @ts-ignore
-        return this.energizou_api.put(`/companies/${company?.id}`, { ...company, is_admin: 0 })
+        return this.energizou_api.put(`/companies/${company?.id}`, { ...company, is_admin: 0, username: "marcos" })
     }
 
     async deleteCompany(company_id: number) {

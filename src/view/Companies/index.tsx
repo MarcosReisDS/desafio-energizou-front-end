@@ -56,11 +56,10 @@ const Companies: FC<ICompanies> = () => {
         } else {
             energizouApi.getCompanyByCnpj(inputFilterValue).then((data) => {
                 if (!inputFilterValue == data) {
-                    energizouApi.listCompanies().then((data) => {
-                        setCompanies(data)
-                    })
+                    setCompanies([])
+                } else {
+                    setCompanies([data])
                 }
-                setCompanies([data])
             })
         }
     }

@@ -28,15 +28,11 @@ export const validInputData = (data: captureInterface): validInterface => {
                 switch (type) {
                     case "client_name":
                         regex = /^\w{2,}(\s)\w{2,}/g
-                        errMessage = "Por favor, insira seu nome completo!"
+                        errMessage = "Por favor, insira seu nome e sobrenome"
                         break;
                     case "email":
                         regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g
                         errMessage = "E-mail inválido!"
-                        break;
-                    case "password":
-                        regex = /^\d{6}$/g
-                        errMessage = "Senha inválida, a senha precisa conter no mínimo 6 dígitos."
                         break;
                     case "phone":
                         regex = /^\([1-9]{2}\) (?:[1-9]|\d[1-9])[0-9]{3}\-[0-9]{4}$/g

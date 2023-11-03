@@ -17,6 +17,7 @@ interface IForm {
 const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disableCancelButton }) => {
 
     const [loading, setLoading] = useState<boolean>(false)
+    const [messageEdit, setMessageEdit] = useState<boolean>(false)
 
     const handleRegister = () => {
         let dataRegister = captureElementData(["client_name", "email", "phone", "password", "name_company", "cnpj", "zip_code", "address", "number"]);
@@ -29,6 +30,11 @@ const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disable
                 dataRegister[key] = dataRegister[key]?.value
             })
             handleSendData({ id: data?.id, ...dataRegister })
+            setMessageEdit(true)
+            setTimeout(() => {
+                setMessageEdit(false)
+            }, 3000)
+
         } else {
             appendErrorInput(checkIsValid);
         }
@@ -62,15 +68,14 @@ const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disable
         input.value = cnpjMask(input.value)
     }
 
-    
     useEffect(() => {
         if (data) {
             setElementsData([
-                { key: "client_name", value: data.username },
+                { key: "client_name", value: data.client_name },
                 { key: "password", value: data.password },
-                { key: "cnpj", value: data.cnpj },
+                { key: "cnpj", value: cnpjMask(data.cnpj) },
                 { key: "email", value: data.email },
-                { key: "phone", value: data.phone},
+                { key: "phone", value: phoneMask(data.phone) },
                 { key: "zip_code", value: data.zip_code },
                 { key: "address", value: data.address },
                 { key: "number", value: data.number },
@@ -78,7 +83,7 @@ const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disable
             ])
         }
     }, [data])
-    
+
     return (
         <div className="container">
             <div className="container-fields block-one">
@@ -94,7 +99,7 @@ const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disable
             <div className="container-fields block-two">
                 <div className="container-inputs">
                     <DefaultInput type="email" name="email" placeholder="Email" />
-                    <DefaultInput type="telefone" name="phone" placeholder="Telefone" maxLength={15} onChange={handlePhone}/>
+                    <DefaultInput type="telefone" name="phone" placeholder="Telefone" maxLength={15} onChange={handlePhone} />
                 </div>
             </div>
             <div className="container-fields block-three">
@@ -111,7 +116,7 @@ const Form: FC<IForm> = ({ handleSendData, typeForm, data, handleCancel, disable
                 <div className="container-buttons">
                     {typeForm === 'edit' && (
                         <>
-                            <Button name="Salvar" type="default" onClick={handleRegister} />
+                            <Button name="Salvar" type="default" message={messageEdit} onClick={handleRegister} />
 
                             {!disableCancelButton && (
                                 <Button name="Cancelar" type="outlined" onClick={handleCancel} />

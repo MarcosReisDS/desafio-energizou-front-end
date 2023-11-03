@@ -6,8 +6,9 @@
     font-size: 18px;
     transition: .3s;
     padding: 8px 16px;
+    position: relative;
 
-    &:hover{
+    &:hover {
         opacity: .8;
     }
 
@@ -15,14 +16,27 @@
         background-color: #003063;
         color: #fff;
     }
-    
+
     &.outlined {
         border: 1px solid #003063;
         background-color: transparent;
         color: #003063;
     }
+
     &.delete {
         background-color: red;
         color: #fff;
+    }
+
+    &.message {
+        &::before {
+            content: "Editado com sucesso!";
+            color: green;
+            font-size: 14px;
+            white-space: nowrap;
+            position: absolute;
+            top: 40px;
+            left: 0px;
+        }
     }
 }
