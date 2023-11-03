@@ -1,27 +1,22 @@
-# React + TypeScript + Vite
+#Sobre o projeto:
+Dashboard com login, edição de usuario logado e listagem de usuarios (empresas) e CRUD do mesmo.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#Obsevações:
+Somente usuarios cadastrados como admin podem acessar o dashboard
 
-Currently, two official plugins are available:
+#Requisitos para rodar o projeto:
+- Nodejs (Versão recomendada v18.15.0)
+- MySql Workbench (Versão recomendada v8.0.32)
+- Docker Desktop (Versão recomendada v24.0.5)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#Coloque os seguintes projetos dentro do mesmo repositório (pasta):
+- https://github.com/MarcosReisDS/desafio-energizou-back-end
+- https://github.com/MarcosReisDS/desafio-energizou-front-end
 
-## Expanding the ESLint configuration
+#Dentro do projeto front-end rode o comando:
+- docker-compose up (Antes de rodar esse comando certifique de esta com docker desktop e o Workbench aberto em sua maquina)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#Ao rodar esse comando sera criado banco de dados base com um usuario (empresa) admin cadastrado e irá iniciar o projeto front-end na porta 3000 e back-end na porta 3001.
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+  
