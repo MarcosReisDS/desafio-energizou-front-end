@@ -14,7 +14,7 @@ Somente usuarios cadastrados como admin podem acessar o dashboard
 - https://github.com/MarcosReisDS/desafio-energizou-front-end
 
 ## Dentro do projeto front-end rode o comando:
-- docker-compose up (Antes de rodar esse comando certifique de esta com docker desktop e o Workbench aberto em sua maquina)
+- docker-compose up (Antes de rodar esse comando certifique de estar com docker desktop e o Workbench aberto em sua maquina)
 
 ### Ao rodar esse comando sera criado banco de dados base com um usuario (empresa) admin cadastrado e irá iniciar o projeto front-end na porta 3000 e back-end na porta 3001.
 
