@@ -3,7 +3,6 @@ Dashboard com login, edição de usuario logado e listagem de usuarios (empresas
 
 ## Requisitos para rodar o projeto:
 - Nodejs (Versão recomendada v18.15.0)
-- MySql Workbench (Versão recomendada v8.0.32)
 - Docker Desktop (Versão recomendada v24.0.5)
 
 ## Coloque os seguintes projetos dentro do mesmo repositório (pasta):
