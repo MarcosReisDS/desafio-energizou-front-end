@@ -1,5 +1,6 @@
 interface CompanyType {
     id?: number;
+    username: string;
     client_name: string;
     password: string;
     name_company: string;

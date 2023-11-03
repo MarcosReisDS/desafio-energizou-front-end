@@ -1,19 +1,18 @@
 import { FC, useState, useEffect } from "react"
-import { cnpjMask, phoneMask } from "../../shared/utils/masks"
-
+import { cnpjMask } from "../../shared/utils/masks"
+import { captureElementData } from "../../shared/utils/helpers"
 import Button from "../../shared/components/Button"
 import Modal from "../../shared/components/Modal"
 import energizouApi from "../../shared/services/energizou/server"
-import "./styles.less"
 import DefaultInput from "../../shared/components/Input"
-import { captureElementData } from "../../shared/utils/helpers"
+import "./styles.less"
 
 interface ICompanies { }
 const Companies: FC<ICompanies> = () => {
 
     const [modal, setModal] = useState<number | null | "create">(null)
     const [typeModal, setTypeModal] = useState<'create' | 'edit' | 'remove' | 'view'>("create")
-    const [c, setC] = useState<string>("")
+    const [valueInputFilter, setValueInputFilter] = useState<string>("")
     const [companies, setCompanies] = useState<CompanyType[]>([])
 
     const openModal = (typeModal: 'create' | 'edit' | 'remove' | 'view', index: number) => {
@@ -22,10 +21,11 @@ const Companies: FC<ICompanies> = () => {
     }
 
     const handleCreate = (dataCompany: CompanyType) => {
-        energizouApi.createCompany(dataCompany).then((data) => {
+        energizouApi.createCompany(dataCompany).then(() => {
             setCompanies([...companies, dataCompany])
-        }).catch(() => {
-            alert("Não foi possível criar a empresa")
+            setModal(null)
+        }).catch((err) => {
+            console.log(err)
         })
     }
 
@@ -46,7 +46,6 @@ const Companies: FC<ICompanies> = () => {
             alert("Não foi possível excluir a empresa")
         })
     }
-    
 
     const handleSearch = () => {
         const inputFilterValue: any = captureElementData(["filter"])?.filter?.value
@@ -56,6 +55,11 @@ const Companies: FC<ICompanies> = () => {
             })
         } else {
             energizouApi.getCompanyByCnpj(inputFilterValue).then((data) => {
+                if (!inputFilterValue == data) {
+                    energizouApi.listCompanies().then((data) => {
+                        setCompanies(data)
+                    })
+                }
                 setCompanies([data])
             })
         }
@@ -71,7 +75,7 @@ const Companies: FC<ICompanies> = () => {
         <>
             <div className="filter">
                 <div>
-                    <DefaultInput placeholder="Filtrar" name="filter" value={c} type="text" maxLength={18} onChange={e => setC(cnpjMask(e.target.value))} onKeyUp={(e) => e.keyCode == 13 ? handleSearch() : e.preventDefault()} />
+                    <DefaultInput placeholder="Filtrar" name="filter" value={valueInputFilter} type="text" maxLength={18} onChange={e => setValueInputFilter(cnpjMask(e.target.value))} onKeyUp={(e) => e.keyCode == 13 ? handleSearch() : e.preventDefault()} />
                     <Button name="Buscar" type="default" onClick={handleSearch} />
                 </div>
                 <div>
@@ -106,7 +110,6 @@ const Companies: FC<ICompanies> = () => {
                                 mode={typeModal}
                                 handleClick={() => handleDelete(company?.id!)}
                                 handleUpdate={handleUpdate}
-                                handleCreate={handleCreate}
                             />
                         )}
 

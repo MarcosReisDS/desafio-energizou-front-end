@@ -15,8 +15,6 @@ class EnergizouApi {
     }
 
     async getCompanyByCnpj(company_cnpj: string) {
-        const regex = /[^a-zA-Z0-9\s]/g;
-        company_cnpj = company_cnpj.replace(regex, '')
 
         return this.energizou_api.get("/companies", { company_cnpj })
     }
@@ -35,11 +33,8 @@ class EnergizouApi {
     }
 
     async createCompany(company: CompanyType) {
-        const regex = /[^a-zA-Z0-9\s]/g;
-        company['cnpj'] = company.cnpj.replace(regex, '')
-        company['phone'] = company.phone.replace(regex, '').replace(" ", "")
 
-        return this.energizou_api.post("/companies", { ...company, is_admin: 0 })
+        return this.energizou_api.post("/companies", { ...company, is_admin: 0, username: "marcos" })
     }
 
     async updateCompany(company: CompanyType) {

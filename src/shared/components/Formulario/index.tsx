@@ -62,10 +62,11 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
         input.value = cnpjMask(input.value)
     }
 
+    
     useEffect(() => {
         if (data) {
             setElementsData([
-                { key: "client_name", value: data.client_name },
+                { key: "client_name", value: data.username },
                 { key: "password", value: data.password },
                 { key: "cnpj", value: data.cnpj },
                 { key: "email", value: data.email },
@@ -77,7 +78,7 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
             ])
         }
     }, [data])
-
+    
     return (
         <div className="container">
             <div className="container-fields block-one">

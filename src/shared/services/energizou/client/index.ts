@@ -9,6 +9,10 @@ class EnergizouClient {
         return this.data
     }
 
+    get username() {
+        return this.data.username
+    }
+    
     get client_name() {
         return this.data.client_name
     }
