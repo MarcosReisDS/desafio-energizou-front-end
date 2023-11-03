@@ -38,9 +38,6 @@ const handleLogout = () => {
                 </div>
             </div>
             <div className="view project">
-                <a href="https://www.figma.com/file/hS0o66OQmgnBJSSsJV7NDf/energizou?type=design&node-id=18-249&mode=design&t=RRauVm6dZLbgzuoT-0">
-                    Prototipo
-                </a>
                 <Button name="Logout" type="outlined" onClick={handleLogout}/>
             </div>
         </div>

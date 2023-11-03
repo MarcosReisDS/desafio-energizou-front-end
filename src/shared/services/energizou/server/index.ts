@@ -1,10 +1,17 @@
+import { getCookie } from "../../../utils/cookies";
 import Api from "../../api";
 
 class EnergizouApi {
     private energizou_api = new Api("energizou")
 
     async listCompanies() {
-        return this.energizou_api.get("/companies", {})
+        const profile = getCookie('profile')
+
+        let data = await this.energizou_api.get("/companies", {})
+
+        data = data.filter((company: CompanyType) => company?.id !== profile?.id)
+
+        return data
     }
 
     async getCompanyByCnpj(company_cnpj: string) {
@@ -16,6 +23,11 @@ class EnergizouApi {
 
     async getCompanyByClientName(client_name: string) {
         return this.energizou_api.get("/companies", { client_name })
+    }
+
+    async getCompanyById(id: string) {
+        console.log(id)
+        return this.energizou_api.get("/companies", { id })
     }
 
     async login(username: string, password: string) {
@@ -31,7 +43,6 @@ class EnergizouApi {
     }
 
     async updateCompany(company: CompanyType) {
-        console.log(company)
         const regex = /[^a-zA-Z0-9\s]/g;
         company['cnpj'] = company.cnpj.replace(regex, '')
         company['phone'] = company.phone.replace(regex, '').replace(" ", "")

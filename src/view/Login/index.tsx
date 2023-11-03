@@ -1,7 +1,7 @@
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import { captureElementData } from "../../shared/utils/helpers"
 import { useNavigate } from "react-router-dom"
-import { setCookie } from "../../shared/utils/cookies"
+import { getCookie, setCookie } from "../../shared/utils/cookies"
 import energizouApi from "../../shared/services/energizou/server"
 import Energizou from "../../shared/components/Energizou"
 import "./styles.less"
@@ -15,11 +15,19 @@ const Login: FC<ILogin> = () => {
 
         if (data) {
             energizouApi.login(data?.name?.value, data?.password?.value).then((resp: CompanyType) => {
-                    setCookie('profile', JSON.stringify({ cnpj: resp.cnpj, name: resp.client_name }), 1)
-                    navigate("/perfil")
+                setCookie('profile', JSON.stringify({ cnpj: resp?.cnpj, name: resp?.client_name, id: resp?.id }), 1)
+                navigate("/perfil")
             })
         }
     }
+
+    useEffect(() => {
+        const profile = getCookie('profile')
+        
+        if(profile){
+            navigate("/perfil")
+        }
+    }, [])
 
     return (
         <div className="container-login">

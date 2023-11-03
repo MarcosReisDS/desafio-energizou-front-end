@@ -10,6 +10,7 @@ interface IDefaultInput {
     loading?: boolean
     maxLength?: number
     onKeyUp?: (e: any) => void
+    value?: any
 }
 const DefaultInput: FC<IDefaultInput> = (props) => {
     return (

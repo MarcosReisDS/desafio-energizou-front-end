@@ -9,8 +9,8 @@ const Profile: FC<IProfile> = () => {
     const [myProfile, setMyProfile] = useState<CompanyType>()
 
     useEffect(() => {
-        const cnpj_company = getCookie('profile')?.cnpj
-        energizouApi.getCompanyByCnpj(cnpj_company).then((data) => {
+        const id_company = getCookie('profile')?.id
+        energizouApi.getCompanyById(id_company).then((data) => {
             setMyProfile(data)
         })
     }, [])

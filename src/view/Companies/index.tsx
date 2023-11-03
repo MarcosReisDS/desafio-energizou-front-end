@@ -13,6 +13,7 @@ const Companies: FC<ICompanies> = () => {
 
     const [modal, setModal] = useState<number | null | "create">(null)
     const [typeModal, setTypeModal] = useState<'create' | 'edit' | 'remove' | 'view'>("create")
+    const [c, setC] = useState<string>("")
     const [companies, setCompanies] = useState<CompanyType[]>([])
 
     const openModal = (typeModal: 'create' | 'edit' | 'remove' | 'view', index: number) => {
@@ -23,7 +24,6 @@ const Companies: FC<ICompanies> = () => {
     const handleCreate = (dataCompany: CompanyType) => {
         energizouApi.createCompany(dataCompany).then((data) => {
             setCompanies([...companies, dataCompany])
-            // setModal(null)
         }).catch(() => {
             alert("Não foi possível criar a empresa")
         })
@@ -46,6 +46,7 @@ const Companies: FC<ICompanies> = () => {
             alert("Não foi possível excluir a empresa")
         })
     }
+    
 
     const handleSearch = () => {
         const inputFilterValue: any = captureElementData(["filter"])?.filter?.value
@@ -70,7 +71,7 @@ const Companies: FC<ICompanies> = () => {
         <>
             <div className="filter">
                 <div>
-                    <DefaultInput placeholder="Filtrar" name="filter" type="text" onKeyUp={(e) => e.keyCode == 13 ? handleSearch() : e.preventDefault()} />
+                    <DefaultInput placeholder="Filtrar" name="filter" value={c} type="text" maxLength={18} onChange={e => setC(cnpjMask(e.target.value))} onKeyUp={(e) => e.keyCode == 13 ? handleSearch() : e.preventDefault()} />
                     <Button name="Buscar" type="default" onClick={handleSearch} />
                 </div>
                 <div>
@@ -84,8 +85,8 @@ const Companies: FC<ICompanies> = () => {
                             <p>{company.name_company}</p>
                         </div>
                         <div className="content">
-                            <p>CNPJ: {cnpjMask(company.cnpj)}</p>
-                            <p>Telefone: {phoneMask(company.phone)}</p>
+                            <p>CNPJ: {company.cnpj}</p>
+                            <p>Telefone: {company.phone}</p>
                             <p>Nome: {company.client_name}</p>
                         </div>
                         <div className="buttons">

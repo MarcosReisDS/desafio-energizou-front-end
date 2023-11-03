@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { appendErrorInput, captureElementData, setElementsData, validInputData } from "../../utils/helpers";
-import { cnpjMask, phoneMask } from "../../utils/masks";
+import { cnpjMask, phoneMask, zipCodeMask } from "../../utils/masks";
 import Button from "../Button";
 import DefaultInput from "../Input";
 import "./styles.less"
@@ -35,9 +35,12 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
     }
 
     const handleGetAddress = (event: any) => {
-        let inputValue = event?.target?.value
+        let input = event.target
+        input.value = zipCodeMask(input.value)
 
-        if (inputValue.length === 8) {
+        let inputValue = input.value
+
+        if (inputValue.length === 9) {
             setLoading(true)
             cepApi.getCep(inputValue).then((resp: ZipCodeType) => {
                 setElementsData([
@@ -56,7 +59,6 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
 
     const handleCnpj = (event: any) => {
         let input = event.target
-        console.log(input)
         input.value = cnpjMask(input.value)
     }
 
@@ -65,9 +67,9 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
             setElementsData([
                 { key: "client_name", value: data.client_name },
                 { key: "password", value: data.password },
-                { key: "cnpj", value: cnpjMask(data.cnpj) },
+                { key: "cnpj", value: data.cnpj },
                 { key: "email", value: data.email },
-                { key: "phone", value: phoneMask(data.phone) },
+                { key: "phone", value: data.phone},
                 { key: "zip_code", value: data.zip_code },
                 { key: "address", value: data.address },
                 { key: "number", value: data.number },
@@ -91,12 +93,12 @@ const Formulario: FC<IFormulario> = ({ handleSendData, typeForm, data, handleCan
             <div className="container-fields block-two">
                 <div className="container-inputs">
                     <DefaultInput type="email" name="email" placeholder="Email" />
-                    <DefaultInput type="telefone" name="phone" placeholder="Telefone" maxLength={15} onChange={handlePhone} />
+                    <DefaultInput type="telefone" name="phone" placeholder="Telefone" maxLength={15} onChange={handlePhone}/>
                 </div>
             </div>
             <div className="container-fields block-three">
                 <div className="container-inputs">
-                    <DefaultInput loading={loading} type="number" name="zip_code" placeholder="CEP" onChange={handleGetAddress} />
+                    <DefaultInput loading={loading} type="text" name="zip_code" placeholder="CEP" maxLength={9} onChange={handleGetAddress} />
                     <DefaultInput type="text" name="address" placeholder="Endereço" />
                 </div>
                 <div className="container-inputs">
