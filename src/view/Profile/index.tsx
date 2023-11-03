@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react"
 import { getCookie } from "../../shared/utils/cookies"
-import Formulario from "../../shared/components/Formulario"
+import Form from "../../shared/components/Formulario"
 import energizouApi from "../../shared/services/energizou/server"
 import "./styles.less"
 
@@ -17,7 +17,7 @@ const Profile: FC<IProfile> = () => {
 
     return (
         <div className="container-profile">
-            <Formulario typeForm="edit" data={myProfile} handleSendData={(e) => console.log(e)} disableCancelButton />
+            <Form typeForm="edit" data={myProfile} handleSendData={(e) => console.log(e)} disableCancelButton />
         </div>
     )
 }
