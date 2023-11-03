@@ -1,9 +1,6 @@
 ## Sobre o projeto:
 Dashboard com login, edição de usuario logado e listagem de usuarios (empresas) e CRUD do mesmo.
 
-## Obsevações:
-Somente usuarios cadastrados como admin podem acessar o dashboard
-
 ## Requisitos para rodar o projeto:
 - Nodejs (Versão recomendada v18.15.0)
 - MySql Workbench (Versão recomendada v8.0.32)
